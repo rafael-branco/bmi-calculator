@@ -49,21 +49,21 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                <tr>
+                <tr id="underweight">
                     <td>Underweight</td>
                     <td>
                         < 18.5
                     </td>
                 </tr>
-                <tr>
+                <tr id="normal-weight">
                     <td>Normal Weight</td>
                     <td>18.5 - 24.9</td>
                 </tr>
-                <tr>
+                <tr id="overweight">
                     <td>Overweight</td>
                     <td>25 - 29.9</td>
                 </tr>
-                <tr>
+                <tr id="obese">
                     <td>Obese</td>
                     <td>> 30</td>
                 </tr>
@@ -77,6 +77,42 @@
         crossorigin="anonymous"></script>
 
     <script>
+
+        function highlightTableRow(bmi){
+            let underweight = document.getElementById('underweight');
+            let normalWeight = document.getElementById('normal-weight');
+            let overweight = document.getElementById('overweight');
+            let obese = document.getElementById('obese');
+
+
+            if(bmi > 30){
+                obese.classList.add('table-active');
+                overweight.classList.remove('table-active');
+                normalWeight.classList.remove('table-active');
+                underweight.classList.remove('table-active');
+            }else if(bmi <= 30 && bmi >= 25){
+                obese.classList.remove('table-active');
+                overweight.classList.add('table-active');
+                normalWeight.classList.remove('table-active');
+                underweight.classList.remove('table-active');
+            }else if(bmi < 25 && bmi >= 18.5){ 
+                obese.classList.remove('table-active');
+                overweight.classList.remove('table-active');
+                normalWeight.classList.add('table-active');
+                underweight.classList.remove('table-active');
+            }else if(bmi < 18 && bmi > 0){
+                obese.classList.remove('table-active');
+                overweight.classList.remove('table-active');
+                normalWeight.classList.remove('table-active');
+                underweight.classList.add('table-active');
+            }else{
+                obese.classList.remove('table-active');
+                overweight.classList.remove('table-active');
+                normalWeight.classList.remove('table-active');
+                underweight.classList.remove('table-active');
+            }
+        }
+
         function calculateBMI(){
 
             let height = document.getElementById('height').value;
@@ -90,6 +126,10 @@
                 let bmi = weight / (height * height);
 
                 document.getElementById('bmi-result').innerHTML = bmi.toFixed(2);
+
+                highlightTableRow(bmi);
+            }else{
+                highlightTableRow(0);
             }
         }
     </script>
