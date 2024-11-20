@@ -11,7 +11,7 @@ This project is a simple **BMI (Body Mass Index) Calculator** built with HTML, C
 
 ## Demo
 
-![Preview](preview.gif)
+![Demo](demo.gif)
 
 ## How to Use
 
